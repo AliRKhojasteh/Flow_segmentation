@@ -30,8 +30,10 @@ Follow the instructions inside the Notebook folder. Open the `Flow_segmentation.
 <img src="Fingers_masks.png" width="800">
 
 
-## References
+## Sample Usage Permissions 
+All examples available in the 'demo' directory are permitted for demonstration purposes only. For additional usage permissions, please contact the corresponding authors listed in the references. 
 
+## References
 This project makes use of the following repositories:
 
 - [Segment Anything](https://github.com/facebookresearch/segment-anything)
