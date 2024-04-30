@@ -10,7 +10,7 @@ This is the official repository for "Segment Anything in Flow Experiments".
 
 ## Installation
 
-1. Create a virtual environment: `conda create -n flowsam python=3.10 -y` and activate it: `conda activate medsam`.
+1. Create a virtual environment: `conda create -n flowsam python=3.10 -y` and activate it: `conda activate flowsam`.
 2. Clone the repository: `git clone https://github.com/AliRKhojasteh/Flow_segmentation`.
 3. Enter the Flow_segmentation folder: `cd Notebook`.
 
