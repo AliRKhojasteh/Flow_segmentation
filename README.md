@@ -42,3 +42,15 @@ This project makes use of the following repositories:
 - [Lightning SAM](https://github.com/luca-medeiros/lightning-sam)
 - [Supervision](https://github.com/roboflow/supervision)
 
+
+## Citation
+
+```bibtex
+@article{khojasteh2024practical,
+  title={Practical Object and Flow Structure Segmentation using Artificial Intelligence},
+  author={Khojasteh, Ali Rahimi and van de Water, Willem and Westerweel, Jerry},
+  note={Submitted to Experiments in Fluids},
+  year={2024}
+}
+
+
