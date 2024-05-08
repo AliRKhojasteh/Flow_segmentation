@@ -99,7 +99,7 @@ def Segmentation_model(sam_type="vit_b", ckpt_path=None, device='cpu'):
 ########## Prediction functio #########
 #######################################
 
-def Predictor(image_pil, text_prompt, groundingdino_model, sam_model, box_threshold=0.3, text_threshold=0.25):
+def Predictor(image_pil, text_prompt, input_point, input_label, groundingdino_model, sam_model, aux_box, box_threshold=0.3, text_threshold=0.25):
 
     # Image transformation
     transform = T.Compose([
@@ -128,10 +128,24 @@ def Predictor(image_pil, text_prompt, groundingdino_model, sam_model, box_thresh
     # SAM prediction
     image_array = np.asarray(image_pil)
     sam_model.set_image(image_array)
+
+    if boxes.nelement() == 0:
+        # If no boxes are detected, use the auxiliary box
+        print("No boxes detected. Using the auxiliary box.")
+        boxes = aux_box
+
     transformed_boxes = sam_model.transform.apply_boxes_torch(boxes, image_array.shape[:2])
+
+    if input_point is not None and input_label is not None:
+        point_coords_tensor = torch.from_numpy(input_point).unsqueeze(0).to(sam_model.device)
+        input_label_tensor = torch.from_numpy(input_label).unsqueeze(0).to(sam_model.device)
+    else:
+        point_coords_tensor = None
+        input_label_tensor = None
+        
     masks, _, _ = sam_model.predict_torch(
-        point_coords=None,
-        point_labels=None,
+        point_coords=point_coords_tensor,
+        point_labels=input_label_tensor,
         boxes=transformed_boxes.to(sam_model.device),
         multimask_output=False,
     )
